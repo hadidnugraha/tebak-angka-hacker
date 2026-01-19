@@ -1,183 +1,184 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Presensi Pegawai Dinas</title>
-    <style>
-        /* Palet Warna & Reset */
-        :root {
-            --bg-color: #0f172a;        /* Biru Gelap */
-            --fg-color: #38bdf8;        /* Biru Langit (Aksen) */
-            --entry-bg: #1e293b;        /* Slate Gelap */
-            --text-color: #f8fafc;      /* Putih Abu */
-            --label-color: #94a3b8;
-            --btn-masuk: #0284c7;
-            --btn-pulang: #dc2626;
-        }
+<meta charset="UTF-8">
+<title>HACK TERMINAL - Tebak Angka</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
-        /* Container Utama */
-        .main-container {
-            background-color: var(--bg-color);
-            width: 100%;
-            max-width: 400px;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
+:root {
+  --green: #00ff99;
+  --dark: #050505;
+}
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+* {
+  box-sizing: border-box;
+  font-family: 'Share Tech Mono', monospace;
+}
 
-        .header h1 {
-            color: var(--fg-color);
-            font-size: 20px;
-            font-weight: bold;
-            margin: 0;
-            text-transform: uppercase;
-        }
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #001b12, #000);
+  color: var(--green);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-        .header p {
-            color: #64748b;
-            font-size: 14px;
-            margin-top: 5px;
-        }
+/* Scanline */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,153,0.03),
+    rgba(0,255,153,0.03) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+}
 
-        /* Form Styling */
-        .form-group {
-            margin-bottom: 20px;
-        }
+.terminal {
+  width: 90%;
+  max-width: 480px;
+  background: rgba(0,0,0,0.9);
+  border: 1px solid var(--green);
+  box-shadow: 0 0 25px rgba(0,255,153,0.4);
+  padding: 20px;
+}
 
-        label {
-            display: block;
-            font-size: 11px;
-            font-weight: bold;
-            color: var(--label-color);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
+.header {
+  text-align: center;
+  margin-bottom: 15px;
+}
 
-        input {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--entry-bg);
-            border: 1px solid #334155;
-            border-radius: 4px;
-            color: var(--text-color);
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
+.header h1 {
+  font-size: 20px;
+  letter-spacing: 2px;
+  animation: glitch 1.5s infinite;
+}
 
-        input:focus {
-            outline: none;
-            border-color: var(--fg-color);
-        }
+@keyframes glitch {
+  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+  50% { text-shadow: -2px 0 red, 2px 0 cyan; }
+  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+}
 
-        /* Button Styling */
-        .btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 14px;
-            margin-bottom: 12px;
-            transition: opacity 0.2s;
-        }
+.output {
+  min-height: 120px;
+  border: 1px dashed var(--green);
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
 
-        .btn:active {
-            transform: scale(0.98);
-        }
+.input-area {
+  display: flex;
+  gap: 10px;
+}
 
-        .btn-masuk {
-            background-color: var(--btn-masuk);
-            color: white;
-            margin-top: 10px;
-        }
+input {
+  flex: 1;
+  background: black;
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 8px;
+  font-size: 16px;
+}
 
-        .btn-pulang {
-            background-color: var(--btn-pulang);
-            color: white;
-        }
+button {
+  background: black;
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 8px 12px;
+  cursor: pointer;
+}
 
-        .footer {
-            text-align: center;
-            font-size: 11px;
-            font-style: italic;
-            color: #475569;
-            margin-top: 30px;
-        }
-    </style>
+button:hover {
+  background: var(--green);
+  color: black;
+}
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  margin-top: 10px;
+  opacity: 0.7;
+}
+</style>
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="header">
-            <h1>Sistem Absensi Dinas</h1>
-            <p>Manajemen Kehadiran Pegawai</p>
-        </div>
+<div class="terminal">
+  <div class="header">
+    <h1>HACK TERMINAL</h1>
+    <div>Secure Number Protocol v1.0</div>
+  </div>
 
-        <div class="form-group">
-            <label>NIP (Nomor Induk Pegawai)</label>
-            <input type="text" id="nip" placeholder="Masukkan NIP">
-        </div>
+  <div class="output" id="output">
+    > Sistem diinisialisasi...<br>
+    > Target angka disembunyikan.<br>
+    > Range: 1 - 100<br>
+    > Percobaan: 7
+  </div>
 
-        <div class="form-group">
-            <label>Nama Lengkap Pegawai</label>
-            <input type="text" id="nama" placeholder="Masukkan Nama Lengkap">
-        </div>
+  <div class="input-area">
+    <input type="number" id="guess" placeholder="Masukkan angka">
+    <button onclick="checkGuess()">EXEC</button>
+  </div>
 
-        <button class="btn btn-masuk" onclick="catatPresensi('MASUK')">PRESENSI MASUK</button>
-        <button class="btn btn-pulang" onclick="catatPresensi('PULANG')">PRESENSI PULANG</button>
+  <div class="footer">
+    © 2026 Hadid Excell Nugraha
+  </div>
+</div>
 
-        <div class="footer">
-            Development by Hadid Excell Nugraha
-        </div>
-    </div>
+<script>
+let target = Math.floor(Math.random() * 100) + 1;
+let attempts = 7;
+const output = document.getElementById("output");
 
-    <script>
-        function catatPresensi(status) {
-            const nip = document.getElementById('nip').value;
-            const nama = document.getElementById('nama').value;
-            const waktuSekarang = new Date().toLocaleString('id-ID');
+function log(text) {
+  output.innerHTML += "<br>> " + text;
+  output.scrollTop = output.scrollHeight;
+}
 
-            if (nip && nama) {
-                // Simulasi penyimpanan data (karena Browser JS tidak bisa tulis file langsung ke CSV demi keamanan)
-                console.log("Data Tersimpan:", {
-                    NIP: nip,
-                    Nama: nama,
-                    Waktu: waktuSekarang,
-                    Status: status
-                });
+function checkGuess() {
+  const guess = Number(document.getElementById("guess").value);
+  if (!guess || guess < 1 || guess > 100) {
+    log("Input tidak valid.");
+    return;
+  }
 
-                let pesan = status === 'MASUK' 
-                    ? `Data Terkirim!\nSelamat bertugas, ${nama}` 
-                    : `Data Terkirim!\nHati-hati di jalan, ${nama}`;
+  attempts--;
 
-                alert(pesan);
-                
-                // Reset Input
-                document.getElementById('nip').value = '';
-                document.getElementById('nama').value = '';
-            } else {
-                alert("Peringatan: Mohon lengkapi NIP dan Nama Pegawai!");
-            }
-        }
-    </script>
+  if (guess === target) {
+    log("ACCESS GRANTED ✔");
+    log("Target berhasil dibobol!");
+    endGame();
+  } else if (attempts <= 0) {
+    log("ACCESS DENIED ✖");
+    log("Target: " + target);
+    endGame();
+  } else if (guess > target) {
+    log("Terlalu tinggi. Percobaan tersisa: " + attempts);
+  } else {
+    log("Terlalu rendah. Percobaan tersisa: " + attempts);
+  }
+
+  document.getElementById("guess").value = "";
+}
+
+function endGame() {
+  log("Restarting system...");
+  setTimeout(() => location.reload(), 3000);
+}
+</script>
+
 </body>
 </html>
