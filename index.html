@@ -3,189 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Spammer Hadid - Web Edition</title>
+    <title>E-Presensi Pegawai Dinas</title>
     <style>
+        /* Palet Warna & Reset */
         :root {
-            --green: #00FF41;
-            --dark-green: #003B00;
-            --bg-black: #000000;
-            --red: #FF0000;
-            --dark-red: #440000;
+            --bg-color: #0f172a;        /* Biru Gelap */
+            --fg-color: #38bdf8;        /* Biru Langit (Aksen) */
+            --entry-bg: #1e293b;        /* Slate Gelap */
+            --text-color: #f8fafc;      /* Putih Abu */
+            --label-color: #94a3b8;
+            --btn-masuk: #0284c7;
+            --btn-pulang: #dc2626;
         }
 
         body {
-            background-color: var(--bg-black);
-            color: var(--green);
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden;
         }
 
-        .container {
-            width: 350px;
-            padding: 20px;
-            border: 1px solid var(--dark-green);
-            box-shadow: 0 0 15px var(--dark-green);
+        /* Container Utama */
+        .main-container {
+            background-color: var(--bg-color);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .header {
             text-align: center;
+            margin-bottom: 30px;
         }
 
-        h1 {
-            font-size: 24px;
-            margin-bottom: 5px;
+        .header h1 {
+            color: var(--fg-color);
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
             text-transform: uppercase;
         }
 
-        .dev-text {
-            font-size: 12px;
-            font-style: italic;
-            margin-bottom: 30px;
-            display: block;
+        .header p {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 5px;
         }
 
-        .input-group {
-            text-align: left;
-            margin-bottom: 15px;
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 20px;
         }
 
         label {
-            font-size: 12px;
-            font-weight: bold;
             display: block;
-            margin-bottom: 5px;
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--label-color);
+            margin-bottom: 8px;
+            text-transform: uppercase;
         }
 
         input {
             width: 100%;
-            background: #0a0a0a;
-            border: 1px solid var(--dark-green);
-            color: var(--green);
-            padding: 10px;
+            padding: 12px;
+            background-color: var(--entry-bg);
+            border: 1px solid #334155;
+            border-radius: 4px;
+            color: var(--text-color);
+            font-size: 16px;
             box-sizing: border-box;
-            outline: none;
+            transition: border-color 0.3s;
         }
 
         input:focus {
-            border-color: var(--green);
+            outline: none;
+            border-color: var(--fg-color);
         }
 
-        button {
+        /* Button Styling */
+        .btn {
             width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            cursor: pointer;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-start {
-            background-color: var(--dark-green);
-            color: var(--green);
-            border: 1px solid var(--green);
-        }
-
-        .btn-start:hover {
-            background-color: #005A00;
-        }
-
-        .btn-wa {
-            background-color: #25D366;
-            color: white;
+            padding: 14px;
             border: none;
-            margin-top: 20px;
-            text-decoration: none;
-            display: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 12px;
+            transition: opacity 0.2s;
         }
 
-        #status {
-            margin-top: 15px;
-            font-size: 12px;
+        .btn:active {
+            transform: scale(0.98);
         }
 
-        /* Scanline effect */
-        .container::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 2;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
+        .btn-masuk {
+            background-color: var(--btn-masuk);
+            color: white;
+            margin-top: 10px;
+        }
+
+        .btn-pulang {
+            background-color: var(--btn-pulang);
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            font-style: italic;
+            color: #475569;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>> WA SPAMMER</h1>
-    <span class="dev-text">DEVELOPER: Hadid Excell Nugraha</span>
+    <div class="main-container">
+        <div class="header">
+            <h1>Sistem Absensi Dinas</h1>
+            <p>Manajemen Kehadiran Pegawai</p>
+        </div>
 
-    <div class="input-group">
-        <label>Nomor WA (Gunakan 62):</label>
-        <input type="number" id="phone" placeholder="628123456789">
+        <div class="form-group">
+            <label>NIP (Nomor Induk Pegawai)</label>
+            <input type="text" id="nip" placeholder="Masukkan NIP">
+        </div>
+
+        <div class="form-group">
+            <label>Nama Lengkap Pegawai</label>
+            <input type="text" id="nama" placeholder="Masukkan Nama Lengkap">
+        </div>
+
+        <button class="btn btn-masuk" onclick="catatPresensi('MASUK')">PRESENSI MASUK</button>
+        <button class="btn btn-pulang" onclick="catatPresensi('PULANG')">PRESENSI PULANG</button>
+
+        <div class="footer">
+            Development by Hadid Excell Nugraha
+        </div>
     </div>
 
-    <div class="input-group">
-        <label>Masukin Chat:</label>
-        <input type="text" id="pesan" placeholder="Masukin chat...">
-    </div>
+    <script>
+        function catatPresensi(status) {
+            const nip = document.getElementById('nip').value;
+            const nama = document.getElementById('nama').value;
+            const waktuSekarang = new Date().toLocaleString('id-ID');
 
-    <div class="input-group">
-        <label>Jumlah Chat (Max 50 untuk Web):</label>
-        <input type="number" id="jumlah" placeholder="Berapa kali?">
-    </div>
+            if (nip && nama) {
+                // Simulasi penyimpanan data (karena Browser JS tidak bisa tulis file langsung ke CSV demi keamanan)
+                console.log("Data Tersimpan:", {
+                    NIP: nip,
+                    Nama: nama,
+                    Waktu: waktuSekarang,
+                    Status: status
+                });
 
-    <button class="btn-start" onclick="generateSpam()">[ GENERATE & KIRIM ]</button>
-    
-    <div id="status">STATUS: SIAP</div>
+                let pesan = status === 'MASUK' 
+                    ? `Data Terkirim!\nSelamat bertugas, ${nama}` 
+                    : `Data Terkirim!\nHati-hati di jalan, ${nama}`;
 
-    <a href="#" id="waLink" target="_blank" class="btn-wa">BUKA WHATSAPP</a>
-</div>
-
-<script>
-    function generateSpam() {
-        const phone = document.getElementById('phone').value;
-        const pesan = document.getElementById('pesan').value;
-        const jumlah = parseInt(document.getElementById('jumlah').value);
-        const status = document.getElementById('status');
-        const waLink = document.getElementById('waLink');
-
-        if (!phone || !pesan || !jumlah) {
-            alert("Isi semua kolom dulu, Bos!");
-            return;
-        }
-
-        status.innerText = "STATUS: MENGOLAH DATA...";
-        status.style.color = "#FFFF00";
-
-        // Generate repeated message with newlines
-        let fullPesan = "";
-        for (let i = 0; i < jumlah; i++) {
-            fullPesan += pesan + "\n";
-        }
-
-        // Encode for URL
-        const encodedPesan = encodeURIComponent(fullPesan);
-        const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedPesan}`;
-
-        setTimeout(() => {
-            status.innerText = "STATUS: BERHASIL!";
-            status.style.color = "#00FF41";
-            waLink.style.display = "block";
-            waLink.href = url;
-            
-            // Konfirmasi ala Python-mu
-            if(confirm("SIAP KIRIM? (GA BAHAYA TAH?)")) {
-                window.open(url, '_blank');
+                alert(pesan);
+                
+                // Reset Input
+                document.getElementById('nip').value = '';
+                document.getElementById('nama').value = '';
+            } else {
+                alert("Peringatan: Mohon lengkapi NIP dan Nama Pegawai!");
             }
-        }, 1000);
-    }
-</script>
-
+        }
+    </script>
 </body>
 </html>
