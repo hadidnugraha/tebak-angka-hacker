@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>HACK TERMINAL - Tebak Angka</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+  --green: #00ff99;
+  --dark: #050505;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #001b12, #000);
+  color: var(--green);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Scanline */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,153,0.03),
+    rgba(0,255,153,0.03) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+}
+
+.terminal {
+  width: 90%;
+  max-width: 480px;
+  background: rgba(0,0,0,0.9);
+  border: 1px solid var(--green);
+  box-shadow: 0 0 25px rgba(0,255,153,0.4);
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.header h1 {
+  font-size: 20px;
+  letter-spacing: 2px;
+  animation: glitch 1.5s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+  50% { text-shadow: -2px 0 red, 2px 0 cyan; }
+  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+}
+
+.output {
+  min-height: 120px;
+  border: 1px dashed var(--green);
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  background: black;
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 8px;
+  font-size: 16px;
+}
+
+button {
+  background: black;
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--green);
+  color: black;
+}
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  margin-top: 10px;
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<div class="terminal">
+  <div class="header">
+    <h1>HACK TERMINAL</h1>
+    <div>Secure Number Protocol v1.0</div>
+  </div>
+
+  <div class="output" id="output">
+    > Sistem diinisialisasi...<br>
+    > Target angka disembunyikan.<br>
+    > Range: 1 - 100<br>
+    > Percobaan: 7
+  </div>
+
+  <div class="input-area">
+    <input type="number" id="guess" placeholder="Masukkan angka">
+    <button onclick="checkGuess()">EXEC</button>
+  </div>
+
+  <div class="footer">
+    © 2026 Hadid Excell Nugraha
+  </div>
+</div>
+
+<script>
+let target = Math.floor(Math.random() * 100) + 1;
+let attempts = 7;
+const output = document.getElementById("output");
+
+function log(text) {
+  output.innerHTML += "<br>> " + text;
+  output.scrollTop = output.scrollHeight;
+}
+
+function checkGuess() {
+  const guess = Number(document.getElementById("guess").value);
+  if (!guess || guess < 1 || guess > 100) {
+    log("Input tidak valid.");
+    return;
+  }
+
+  attempts--;
+
+  if (guess === target) {
+    log("ACCESS GRANTED ✔");
+    log("Target berhasil dibobol!");
+    endGame();
+  } else if (attempts <= 0) {
+    log("ACCESS DENIED ✖");
+    log("Target: " + target);
+    endGame();
+  } else if (guess > target) {
+    log("Terlalu tinggi. Percobaan tersisa: " + attempts);
+  } else {
+    log("Terlalu rendah. Percobaan tersisa: " + attempts);
+  }
+
+  document.getElementById("guess").value = "";
+}
+
+function endGame() {
+  log("Restarting system...");
+  setTimeout(() => location.reload(), 3000);
+}
+</script>
+
+</body>
+</html>
