@@ -1,183 +1,190 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>HACK TERMINAL - Tebak Angka</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Spammer Hadid - Web Edition</title>
+    <style>
+        :root {
+            --green: #00FF41;
+            --dark-green: #003B00;
+            --bg-black: #000000;
+            --red: #FF0000;
+            --dark-red: #440000;
+        }
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        body {
+            background-color: var(--bg-black);
+            color: var(--green);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
 
-:root {
-  --green: #00ff99;
-  --dark: #050505;
-}
+        .container {
+            width: 350px;
+            padding: 20px;
+            border: 1px solid var(--dark-green);
+            box-shadow: 0 0 15px var(--dark-green);
+            text-align: center;
+        }
 
-* {
-  box-sizing: border-box;
-  font-family: 'Share Tech Mono', monospace;
-}
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
 
-body {
-  margin: 0;
-  background: radial-gradient(circle at top, #001b12, #000);
-  color: var(--green);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
+        .dev-text {
+            font-size: 12px;
+            font-style: italic;
+            margin-bottom: 30px;
+            display: block;
+        }
 
-/* Scanline */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(0,255,153,0.03),
-    rgba(0,255,153,0.03) 1px,
-    transparent 2px,
-    transparent 4px
-  );
-  pointer-events: none;
-}
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
 
-.terminal {
-  width: 90%;
-  max-width: 480px;
-  background: rgba(0,0,0,0.9);
-  border: 1px solid var(--green);
-  box-shadow: 0 0 25px rgba(0,255,153,0.4);
-  padding: 20px;
-}
+        label {
+            font-size: 12px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
 
-.header {
-  text-align: center;
-  margin-bottom: 15px;
-}
+        input {
+            width: 100%;
+            background: #0a0a0a;
+            border: 1px solid var(--dark-green);
+            color: var(--green);
+            padding: 10px;
+            box-sizing: border-box;
+            outline: none;
+        }
 
-.header h1 {
-  font-size: 20px;
-  letter-spacing: 2px;
-  animation: glitch 1.5s infinite;
-}
+        input:focus {
+            border-color: var(--green);
+        }
 
-@keyframes glitch {
-  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
-  50% { text-shadow: -2px 0 red, 2px 0 cyan; }
-  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
-}
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-.output {
-  min-height: 120px;
-  border: 1px dashed var(--green);
-  padding: 10px;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
+        .btn-start {
+            background-color: var(--dark-green);
+            color: var(--green);
+            border: 1px solid var(--green);
+        }
 
-.input-area {
-  display: flex;
-  gap: 10px;
-}
+        .btn-start:hover {
+            background-color: #005A00;
+        }
 
-input {
-  flex: 1;
-  background: black;
-  border: 1px solid var(--green);
-  color: var(--green);
-  padding: 8px;
-  font-size: 16px;
-}
+        .btn-wa {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            text-decoration: none;
+            display: none;
+        }
 
-button {
-  background: black;
-  border: 1px solid var(--green);
-  color: var(--green);
-  padding: 8px 12px;
-  cursor: pointer;
-}
+        #status {
+            margin-top: 15px;
+            font-size: 12px;
+        }
 
-button:hover {
-  background: var(--green);
-  color: black;
-}
-
-.footer {
-  text-align: center;
-  font-size: 11px;
-  margin-top: 10px;
-  opacity: 0.7;
-}
-</style>
+        /* Scanline effect */
+        .container::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
 
-<div class="terminal">
-  <div class="header">
-    <h1>HACK TERMINAL</h1>
-    <div>Secure Number Protocol v1.0</div>
-  </div>
+<div class="container">
+    <h1>> WA SPAMMER</h1>
+    <span class="dev-text">DEVELOPER: Hadid Excell Nugraha</span>
 
-  <div class="output" id="output">
-    > Sistem diinisialisasi...<br>
-    > Target angka disembunyikan.<br>
-    > Range: 1 - 100<br>
-    > Percobaan: 7
-  </div>
+    <div class="input-group">
+        <label>Nomor WA (Gunakan 62):</label>
+        <input type="number" id="phone" placeholder="628123456789">
+    </div>
 
-  <div class="input-area">
-    <input type="number" id="guess" placeholder="Masukkan angka">
-    <button onclick="checkGuess()">EXEC</button>
-  </div>
+    <div class="input-group">
+        <label>Masukin Chat:</label>
+        <input type="text" id="pesan" placeholder="Masukin chat...">
+    </div>
 
-  <div class="footer">
-    © 2026 Hadid Excell Nugraha
-  </div>
+    <div class="input-group">
+        <label>Jumlah Chat (Max 50 untuk Web):</label>
+        <input type="number" id="jumlah" placeholder="Berapa kali?">
+    </div>
+
+    <button class="btn-start" onclick="generateSpam()">[ GENERATE & KIRIM ]</button>
+    
+    <div id="status">STATUS: SIAP</div>
+
+    <a href="#" id="waLink" target="_blank" class="btn-wa">BUKA WHATSAPP</a>
 </div>
 
 <script>
-let target = Math.floor(Math.random() * 100) + 1;
-let attempts = 7;
-const output = document.getElementById("output");
+    function generateSpam() {
+        const phone = document.getElementById('phone').value;
+        const pesan = document.getElementById('pesan').value;
+        const jumlah = parseInt(document.getElementById('jumlah').value);
+        const status = document.getElementById('status');
+        const waLink = document.getElementById('waLink');
 
-function log(text) {
-  output.innerHTML += "<br>> " + text;
-  output.scrollTop = output.scrollHeight;
-}
+        if (!phone || !pesan || !jumlah) {
+            alert("Isi semua kolom dulu, Bos!");
+            return;
+        }
 
-function checkGuess() {
-  const guess = Number(document.getElementById("guess").value);
-  if (!guess || guess < 1 || guess > 100) {
-    log("Input tidak valid.");
-    return;
-  }
+        status.innerText = "STATUS: MENGOLAH DATA...";
+        status.style.color = "#FFFF00";
 
-  attempts--;
+        // Generate repeated message with newlines
+        let fullPesan = "";
+        for (let i = 0; i < jumlah; i++) {
+            fullPesan += pesan + "\n";
+        }
 
-  if (guess === target) {
-    log("ACCESS GRANTED ✔");
-    log("Target berhasil dibobol!");
-    endGame();
-  } else if (attempts <= 0) {
-    log("ACCESS DENIED ✖");
-    log("Target: " + target);
-    endGame();
-  } else if (guess > target) {
-    log("Terlalu tinggi. Percobaan tersisa: " + attempts);
-  } else {
-    log("Terlalu rendah. Percobaan tersisa: " + attempts);
-  }
+        // Encode for URL
+        const encodedPesan = encodeURIComponent(fullPesan);
+        const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodedPesan}`;
 
-  document.getElementById("guess").value = "";
-}
-
-function endGame() {
-  log("Restarting system...");
-  setTimeout(() => location.reload(), 3000);
-}
+        setTimeout(() => {
+            status.innerText = "STATUS: BERHASIL!";
+            status.style.color = "#00FF41";
+            waLink.style.display = "block";
+            waLink.href = url;
+            
+            // Konfirmasi ala Python-mu
+            if(confirm("SIAP KIRIM? (GA BAHAYA TAH?)")) {
+                window.open(url, '_blank');
+            }
+        }, 1000);
+    }
 </script>
 
 </body>
