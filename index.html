@@ -1,184 +1,163 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>HACK TERMINAL - Tebak Angka</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
-:root {
-  --green: #00ff99;
-  --dark: #050505;
-}
-
-* {
-  box-sizing: border-box;
-  font-family: 'Share Tech Mono', monospace;
-}
-
-body {
-  margin: 0;
-  background: radial-gradient(circle at top, #001b12, #000);
-  color: var(--green);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-/* Scanline */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(0,255,153,0.03),
-    rgba(0,255,153,0.03) 1px,
-    transparent 2px,
-    transparent 4px
-  );
-  pointer-events: none;
-}
-
-.terminal {
-  width: 90%;
-  max-width: 480px;
-  background: rgba(0,0,0,0.9);
-  border: 1px solid var(--green);
-  box-shadow: 0 0 25px rgba(0,255,153,0.4);
-  padding: 20px;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.header h1 {
-  font-size: 20px;
-  letter-spacing: 2px;
-  animation: glitch 1.5s infinite;
-}
-
-@keyframes glitch {
-  0% { text-shadow: 2px 0 red, -2px 0 cyan; }
-  50% { text-shadow: -2px 0 red, 2px 0 cyan; }
-  100% { text-shadow: 2px 0 red, -2px 0 cyan; }
-}
-
-.output {
-  min-height: 120px;
-  border: 1px dashed var(--green);
-  padding: 10px;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-.input-area {
-  display: flex;
-  gap: 10px;
-}
-
-input {
-  flex: 1;
-  background: black;
-  border: 1px solid var(--green);
-  color: var(--green);
-  padding: 8px;
-  font-size: 16px;
-}
-
-button {
-  background: black;
-  border: 1px solid var(--green);
-  color: var(--green);
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: var(--green);
-  color: black;
-}
-
-.footer {
-  text-align: center;
-  font-size: 11px;
-  margin-top: 10px;
-  opacity: 0.7;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pembersih Gen-Z | Pro Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #0f172a;
+            color: white;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .app-gradient {
+            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+        .active-tab {
+            color: #3b82f6;
+            position: relative;
+        }
+        .active-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; left: 50%; transform: translateX(-50%);
+            width: 4px; height: 4px; background: #3b82f6; border-radius: 50%;
+        }
+        /* Responsif Android */
+        @media (max-width: 768px) {
+            .mobile-bottom-nav {
+                display: flex;
+            }
+            .hero-text { font-size: 2.5rem; }
+        }
+    </style>
 </head>
-<body>
+<body class="app-gradient min-h-screen pb-24 md:pb-0">
 
-<div class="terminal">
-  <div class="header">
-    <h1>HACK TERMINAL</h1>
-    <div>Secure Number Protocol v1.0</div>
-  </div>
+    <nav class="hidden md:flex fixed w-full z-50 p-6 justify-between items-center bg-slate-900/50 backdrop-blur-xl">
+        <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold">G</div>
+            <span class="font-bold text-lg tracking-tight">PEMBERSIH GEN-Z</span>
+        </div>
+        <div class="flex items-center space-x-8 text-sm font-medium opacity-70">
+            <a href="#home" class="hover:opacity-100">Beranda</a>
+            <a href="#fitur" class="hover:opacity-100">Fitur</a>
+            <a href="#pembayaran" class="hover:opacity-100">Lisensi</a>
+        </div>
+        <a href="#pembayaran" class="bg-blue-600 px-6 py-2 rounded-full font-bold text-sm hover:bg-blue-700 transition">Upgrade Pro</a>
+    </nav>
 
-  <div class="output" id="output">
-    > Sistem diinisialisasi...<br>
-    > Target angka disembunyikan.<br>
-    > Range: 1 - 100<br>
-    > Percobaan: 7
-  </div>
+    <main class="max-w-4xl mx-auto px-6 pt-12 md:pt-40">
+        
+        <section id="home" class="text-center md:text-left flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1">
+                <span class="bg-blue-500/10 text-blue-400 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">Version 2026.ULTRA</span>
+                <h1 class="hero-text text-5xl md:text-7xl font-extrabold mt-6 leading-tight">
+                    PC Lebih <span class="text-blue-500">Ngebut</span> Dari HP.
+                </h1>
+                <p class="text-slate-400 mt-6 text-lg leading-relaxed">
+                    Software optimasi Windows racikan <strong>Hadid Excell Nugraha</strong>. Bersihkan sampah sistem hanya dengan satu klik.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row gap-4">
+                    <button class="bg-white text-black px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
+                        <span>Download .EXE</span>
+                    </button>
+                    <button class="glass-card px-8 py-4 rounded-2xl font-bold flex items-center justify-center">Lihat Demo</button>
+                </div>
+            </div>
+            
+            <div class="hidden md:block w-64 h-[500px] glass-card p-4 relative overflow-hidden">
+                <div class="w-full h-full bg-slate-900 rounded-[20px] p-4 flex flex-col items-center justify-center border border-white/5">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full animate-pulse flex items-center justify-center text-2xl">⚡</div>
+                    <div class="mt-4 text-center">
+                        <div class="font-bold text-xs uppercase tracking-widest mb-1">Status</div>
+                        <div class="text-green-400 font-bold text-xl uppercase italic">OPTIMIZED</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <div class="input-area">
-    <input type="number" id="guess" placeholder="Masukkan angka">
-    <button onclick="checkGuess()">EXEC</button>
-  </div>
+        <section id="fitur" class="py-24">
+            <h2 class="text-2xl font-bold mb-8">Fitur Unggulan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="glass-card p-6 flex items-start gap-4">
+                    <div class="text-3xl">🧹</div>
+                    <div>
+                        <h4 class="font-bold text-lg">Neural Sweep</h4>
+                        <p class="text-slate-400 text-sm mt-1">Hapus Cache DirectX, Prefetch, dan Log Sistem tanpa sisa.</p>
+                    </div>
+                </div>
+                <div class="glass-card p-6 flex items-start gap-4">
+                    <div class="text-3xl">🚀</div>
+                    <div>
+                        <h4 class="font-bold text-lg">RAM Turbo</h4>
+                        <p class="text-slate-400 text-sm mt-1">Kompresi memori instan untuk multitasking lancar di Windows.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <div class="footer">
-    © 2026 Hadid Excell Nugraha
-  </div>
-</div>
+        <section id="pembayaran" class="py-12">
+            <div class="glass-card bg-blue-600/10 border-blue-500/30 p-8 md:p-12 relative overflow-hidden">
+                <div class="relative z-10 text-center md:text-left">
+                    <h2 class="text-3xl font-extrabold mb-4 italic">UPGRADE KE PRO</h2>
+                    <p class="text-slate-300 mb-10">Buka akses "High-End Optix" untuk pengalaman gaming tanpa lag.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 items-center">
+                        <div class="space-y-3">
+                            <div class="flex justify-between p-4 bg-slate-900/50 rounded-xl border border-white/5">
+                                <span class="text-xs font-bold text-slate-400">DANA / OVO</span>
+                                <span class="text-sm font-bold">0812-XXXX-XXXX</span>
+                            </div>
+                            <div class="flex justify-between p-4 bg-slate-900/50 rounded-xl border border-white/5">
+                                <span class="text-xs font-bold text-slate-400">BANK BCA</span>
+                                <span class="text-sm font-bold">8820-XXXX-XXXX</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-3xl p-8 text-black text-center">
+                            <p class="text-[10px] font-bold uppercase tracking-widest opacity-50">Harga Spesial</p>
+                            <div class="text-4xl font-black my-2">Rp 75.000</div>
+                            <a href="https://wa.me/628123456789" class="block w-full bg-blue-600 text-white py-4 rounded-xl font-bold mt-4 shadow-xl shadow-blue-500/20 active:scale-95 transition text-sm">BELI VIA WHATSAPP</a>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 text-center border-t border-white/10 pt-8">
+                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-2">Kunci Lisensi Default</p>
+                        <p class="text-2xl font-bold text-blue-400 tracking-widest font-mono">HADID-CEGER-2026</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<script>
-let target = Math.floor(Math.random() * 100) + 1;
-let attempts = 7;
-const output = document.getElementById("output");
+        <footer class="py-12 text-center text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+            Developed by Hadid Excell Nugraha • © 2026
+        </footer>
+    </main>
 
-function log(text) {
-  output.innerHTML += "<br>> " + text;
-  output.scrollTop = output.scrollHeight;
-}
-
-function checkGuess() {
-  const guess = Number(document.getElementById("guess").value);
-  if (!guess || guess < 1 || guess > 100) {
-    log("Input tidak valid.");
-    return;
-  }
-
-  attempts--;
-
-  if (guess === target) {
-    log("ACCESS GRANTED ✔");
-    log("Target berhasil dibobol!");
-    endGame();
-  } else if (attempts <= 0) {
-    log("ACCESS DENIED ✖");
-    log("Target: " + target);
-    endGame();
-  } else if (guess > target) {
-    log("Terlalu tinggi. Percobaan tersisa: " + attempts);
-  } else {
-    log("Terlalu rendah. Percobaan tersisa: " + attempts);
-  }
-
-  document.getElementById("guess").value = "";
-}
-
-function endGame() {
-  log("Restarting system...");
-  setTimeout(() => location.reload(), 3000);
-}
-</script>
+    <div class="mobile-bottom-nav md:hidden fixed bottom-0 w-full h-20 bg-slate-950/80 backdrop-blur-2xl border-t border-white/10 flex justify-around items-center px-6 z-[100]">
+        <a href="#home" class="flex flex-col items-center space-y-1 active-tab">
+            <span class="text-xl">🏠</span>
+            <span class="text-[10px] font-bold">Home</span>
+        </a>
+        <a href="#fitur" class="flex flex-col items-center space-y-1 opacity-50">
+            <span class="text-xl">⚡</span>
+            <span class="text-[10px] font-bold">Fitur</span>
+        </a>
+        <a href="#pembayaran" class="flex flex-col items-center space-y-1 opacity-50">
+            <span class="text-xl">🔑</span>
+            <span class="text-[10px] font-bold">Lisensi</span>
+        </a>
+    </div>
 
 </body>
 </html>
