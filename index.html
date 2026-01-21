@@ -2,162 +2,213 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pembersih Gen-Z | Pro Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEMBERSIH GEN-Z | OFFICIAL</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #0f172a;
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+        
+        :root {
+            --primary: #00ff88;
+            --secondary: #0066ff;
+            --bg: #050505;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg);
             color: white;
-            -webkit-tap-highlight-color: transparent;
+            scroll-behavior: smooth;
         }
-        .app-gradient {
-            background: radial-gradient(circle at top right, #1e293b, #0f172a);
+
+        .bento-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 2rem;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
+
+        .bento-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--primary);
+            transform: translateY(-5px);
         }
-        .active-tab {
-            color: #3b82f6;
-            position: relative;
+
+        .glow-text {
+            background: linear-gradient(to right, #fff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .active-tab::after {
-            content: '';
+
+        .blob {
             position: absolute;
-            bottom: -8px; left: 50%; transform: translateX(-50%);
-            width: 4px; height: 4px; background: #3b82f6; border-radius: 50%;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: -1;
+            border-radius: 50%;
         }
-        /* Responsif Android */
+
+        /* Navigasi khusus Mobile Android */
         @media (max-width: 768px) {
-            .mobile-bottom-nav {
-                display: flex;
+            .mobile-fab {
+                position: fixed;
+                bottom: 2rem;
+                right: 2rem;
+                z-index: 1000;
             }
-            .hero-text { font-size: 2.5rem; }
         }
     </style>
 </head>
-<body class="app-gradient min-h-screen pb-24 md:pb-0">
+<body class="overflow-x-hidden">
 
-    <nav class="hidden md:flex fixed w-full z-50 p-6 justify-between items-center bg-slate-900/50 backdrop-blur-xl">
-        <div class="flex items-center space-x-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold">G</div>
-            <span class="font-bold text-lg tracking-tight">PEMBERSIH GEN-Z</span>
+    <div class="blob top-[-10%] left-[-10%]"></div>
+    <div class="blob bottom-[-10%] right-[-10%]"></div>
+
+    <nav class="fixed w-full z-50 top-0 py-6 px-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center backdrop-blur-xl bg-black/40 border border-white/10 rounded-full px-8 py-3">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-2xl tracking-tighter glow-text">GZ.</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest opacity-70">
+                <a href="#features" class="hover:opacity-100 transition">Tech</a>
+                <a href="#payment" class="hover:opacity-100 transition">Lisensi</a>
+                <a href="#contact" class="hover:opacity-100 transition">Developer</a>
+            </div>
+            <a href="#payment" class="bg-white text-black px-6 py-2 rounded-full font-bold text-xs hover:bg-emerald-400 transition">GET PRO</a>
         </div>
-        <div class="flex items-center space-x-8 text-sm font-medium opacity-70">
-            <a href="#home" class="hover:opacity-100">Beranda</a>
-            <a href="#fitur" class="hover:opacity-100">Fitur</a>
-            <a href="#pembayaran" class="hover:opacity-100">Lisensi</a>
-        </div>
-        <a href="#pembayaran" class="bg-blue-600 px-6 py-2 rounded-full font-bold text-sm hover:bg-blue-700 transition">Upgrade Pro</a>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-6 pt-12 md:pt-40">
-        
-        <section id="home" class="text-center md:text-left flex flex-col md:flex-row items-center gap-12">
-            <div class="flex-1">
-                <span class="bg-blue-500/10 text-blue-400 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">Version 2026.ULTRA</span>
-                <h1 class="hero-text text-5xl md:text-7xl font-extrabold mt-6 leading-tight">
-                    PC Lebih <span class="text-blue-500">Ngebut</span> Dari HP.
-                </h1>
-                <p class="text-slate-400 mt-6 text-lg leading-relaxed">
-                    Software optimasi Windows racikan <strong>Hadid Excell Nugraha</strong>. Bersihkan sampah sistem hanya dengan satu klik.
+    <section class="min-h-screen flex items-center justify-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div data-aos="zoom-in" class="mb-6 inline-flex items-center gap-2 px-4 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-[10px] font-bold tracking-[0.3em] uppercase">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                2026.ULTRA.FINAL RELEASE
+            </div>
+            <h1 data-aos="fade-up" class="text-6xl md:text-9xl font-bold mb-8 tracking-tighter">
+                OPTIMIZED <br> <span class="glow-text">TO THE CORE.</span>
+            </h1>
+            <p data-aos="fade-up" data-aos-delay="200" class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-12">
+                Evolusi terakhir pembersih PC karya <strong>Hadid Excell Nugraha</strong>. Neural Sweep AI dan RAM Accelerator dalam satu interface yang memukau.
+            </p>
+            <div data-aos="fade-up" data-aos-delay="400" class="flex flex-col md:flex-row justify-center gap-6">
+                <button class="bg-emerald-400 text-black px-12 py-5 rounded-3xl font-bold text-lg flex items-center justify-center gap-3 hover:shadow-[0_0_30px_rgba(0,255,136,0.4)] transition">
+                    <i class="fab fa-windows"></i> Installer .exe
+                </button>
+                <a href="#payment" class="bg-white/5 border border-white/10 backdrop-blur-lg px-12 py-5 rounded-3xl font-bold text-lg flex items-center justify-center hover:bg-white/10 transition">
+                    Beli Lisensi
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
+            <div data-aos="fade-right" class="md:col-span-2 bento-card p-12 overflow-hidden relative group">
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-bold mb-4">Neural Sweep AI</h3>
+                    <p class="text-gray-400 max-w-md">Algoritma cerdas yang mendeteksi registry sampah secara real-time tanpa menyentuh file krusial sistem.</p>
+                </div>
+                <div class="absolute right-[-5%] bottom-[-10%] opacity-10 group-hover:opacity-30 transition-all duration-700">
+                    <i class="fas fa-brain text-[200px] text-emerald-400"></i>
+                </div>
+            </div>
+            <div data-aos="fade-left" class="bento-card p-12 flex flex-col justify-end bg-gradient-to-br from-blue-600 to-emerald-600">
+                <h3 class="text-3xl font-bold mb-4 text-white">RAM Turbo</h3>
+                <p class="text-white/80">Akselerasi memori hingga 40% lebih efisien untuk gaming.</p>
+            </div>
+            <div data-aos="fade-up" class="bento-card p-12">
+                <i class="fas fa-shield-halved text-4xl text-emerald-400 mb-6"></i>
+                <h3 class="text-xl font-bold mb-2">Security Clean</h3>
+                <p class="text-gray-500 text-sm">Privasi aman dengan pembersihan jejak browser otomatis.</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="200" class="md:col-span-2 bento-card p-12 flex items-center justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold mb-2">High-End Optix</h3>
+                    <p class="text-gray-500">Tuning khusus untuk GPU RTX & NVMe Gen-5.</p>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center"><i class="fas fa-bolt"></i></div>
+                    <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center"><i class="fas fa-microchip"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="payment" class="py-24 bg-white/5 border-y border-white/10">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right">
+                <h2 class="text-4xl font-bold mb-6">Aktivasi Pro <br><span class="text-emerald-400">Lifetime Access</span></h2>
+                <p class="text-gray-400 mb-8 leading-relaxed text-sm">
+                    Dapatkan kunci lisensi resmi dari pengembang untuk membuka semua fitur elit. Kirim bukti transfer dan dapatkan balasan instan.
                 </p>
-                <div class="mt-10 flex flex-col sm:flex-row gap-4">
-                    <button class="bg-white text-black px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
-                        <span>Download .EXE</span>
-                    </button>
-                    <button class="glass-card px-8 py-4 rounded-2xl font-bold flex items-center justify-center">Lihat Demo</button>
-                </div>
-            </div>
-            
-            <div class="hidden md:block w-64 h-[500px] glass-card p-4 relative overflow-hidden">
-                <div class="w-full h-full bg-slate-900 rounded-[20px] p-4 flex flex-col items-center justify-center border border-white/5">
-                    <div class="w-16 h-16 bg-blue-600 rounded-full animate-pulse flex items-center justify-center text-2xl">⚡</div>
-                    <div class="mt-4 text-center">
-                        <div class="font-bold text-xs uppercase tracking-widest mb-1">Status</div>
-                        <div class="text-green-400 font-bold text-xl uppercase italic">OPTIMIZED</div>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs font-black">1</div>
+                        <p class="text-sm font-bold">Lakukan Pembayaran Rp 549.000</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs font-black">2</div>
+                        <p class="text-sm font-bold">Kirim Bukti Ke WhatsApp Admin</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs font-black">3</div>
+                        <p class="text-sm font-bold">Gunakan Kunci Lisensi Di Aplikasi</p>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section id="fitur" class="py-24">
-            <h2 class="text-2xl font-bold mb-8">Fitur Unggulan</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="glass-card p-6 flex items-start gap-4">
-                    <div class="text-3xl">🧹</div>
-                    <div>
-                        <h4 class="font-bold text-lg">Neural Sweep</h4>
-                        <p class="text-slate-400 text-sm mt-1">Hapus Cache DirectX, Prefetch, dan Log Sistem tanpa sisa.</p>
-                    </div>
-                </div>
-                <div class="glass-card p-6 flex items-start gap-4">
-                    <div class="text-3xl">🚀</div>
-                    <div>
-                        <h4 class="font-bold text-lg">RAM Turbo</h4>
-                        <p class="text-slate-400 text-sm mt-1">Kompresi memori instan untuk multitasking lancar di Windows.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="pembayaran" class="py-12">
-            <div class="glass-card bg-blue-600/10 border-blue-500/30 p-8 md:p-12 relative overflow-hidden">
-                <div class="relative z-10 text-center md:text-left">
-                    <h2 class="text-3xl font-extrabold mb-4 italic">UPGRADE KE PRO</h2>
-                    <p class="text-slate-300 mb-10">Buka akses "High-End Optix" untuk pengalaman gaming tanpa lag.</p>
-                    
-                    <div class="grid md:grid-cols-2 gap-6 items-center">
-                        <div class="space-y-3">
-                            <div class="flex justify-between p-4 bg-slate-900/50 rounded-xl border border-white/5">
-                                <span class="text-xs font-bold text-slate-400">DANA / OVO</span>
-                                <span class="text-sm font-bold">0812-XXXX-XXXX</span>
-                            </div>
-                            <div class="flex justify-between p-4 bg-slate-900/50 rounded-xl border border-white/5">
-                                <span class="text-xs font-bold text-slate-400">BANK BCA</span>
-                                <span class="text-sm font-bold">8820-XXXX-XXXX</span>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-white rounded-3xl p-8 text-black text-center">
-                            <p class="text-[10px] font-bold uppercase tracking-widest opacity-50">Harga Spesial</p>
-                            <div class="text-4xl font-black my-2">Rp 75.000</div>
-                            <a href="https://wa.me/628123456789" class="block w-full bg-blue-600 text-white py-4 rounded-xl font-bold mt-4 shadow-xl shadow-blue-500/20 active:scale-95 transition text-sm">BELI VIA WHATSAPP</a>
+            <div data-aos="fade-left" class="bento-card p-8 border-emerald-500/20 shadow-[0_0_50px_rgba(0,255,136,0.1)]">
+                <p class="text-[10px] font-bold tracking-[0.3em] text-emerald-400 mb-2">LICENSE KEY PREVIEW</p>
+                <h4 class="text-3xl font-mono font-bold mb-10 tracking-tighter">XXXX-XXXX-XX26</h4>
+                
+                <div class="space-y-4 mb-8">
+                    <div class="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/10">
+                        <span class="text-xs font-bold opacity-60">Metode</span>
+                        <div class="flex gap-4 text-sm">
+                            <i class="fas fa-qrcode"></i> QRIS
+                            <i class="fas fa-wallet"></i> E-Wallet
                         </div>
                     </div>
-                    
-                    <div class="mt-12 text-center border-t border-white/10 pt-8">
-                        <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-2">Kunci Lisensi Default</p>
-                        <p class="text-2xl font-bold text-blue-400 tracking-widest font-mono">HADID-CEGER-2026</p>
-                    </div>
                 </div>
+
+                <a href="https://wa.me/6285718023296" class="w-full bg-emerald-400 text-black py-4 rounded-2xl font-black text-center block hover:scale-[1.02] transition duration-300">
+                    <i class="fab fa-whatsapp mr-2"></i> CHAT ADMIN SEKARANG
+                </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer class="py-12 text-center text-slate-500 text-[10px] font-bold uppercase tracking-widest">
-            Developed by Hadid Excell Nugraha • © 2026
-        </footer>
-    </main>
+    <footer id="contact" class="py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <div>
+                <h2 class="text-2xl font-bold mb-2">HADID EXCELL NUGRAHA</h2>
+                <p class="text-xs tracking-[0.5em] text-emerald-400 font-bold uppercase italic">Lead Developer & Visionary</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="w-14 h-14 rounded-full bento-card flex items-center justify-center hover:text-emerald-400 transition"><i class="fab fa-instagram text-xl"></i></a>
+                <a href="#" class="w-14 h-14 rounded-full bento-card flex items-center justify-center hover:text-emerald-400 transition"><i class="fab fa-github text-xl"></i></a>
+                <a href="#" class="w-14 h-14 rounded-full bento-card flex items-center justify-center hover:text-emerald-400 transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+            </div>
+            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest text-center md:text-right">
+                © 2026 GZ CLEANER PROJECT. <br> ALL RIGHTS RESERVED.
+            </p>
+        </div>
+    </footer>
 
-    <div class="mobile-bottom-nav md:hidden fixed bottom-0 w-full h-20 bg-slate-950/80 backdrop-blur-2xl border-t border-white/10 flex justify-around items-center px-6 z-[100]">
-        <a href="#home" class="flex flex-col items-center space-y-1 active-tab">
-            <span class="text-xl">🏠</span>
-            <span class="text-[10px] font-bold">Home</span>
-        </a>
-        <a href="#fitur" class="flex flex-col items-center space-y-1 opacity-50">
-            <span class="text-xl">⚡</span>
-            <span class="text-[10px] font-bold">Fitur</span>
-        </a>
-        <a href="#pembayaran" class="flex flex-col items-center space-y-1 opacity-50">
-            <span class="text-xl">🔑</span>
-            <span class="text-[10px] font-bold">Lisensi</span>
-        </a>
-    </div>
+    <a href="https://wa.me/6285718023296" class="mobile-fab md:hidden w-16 h-16 bg-emerald-400 rounded-full flex items-center justify-center shadow-2xl shadow-emerald-400/50 text-black text-2xl animate-bounce">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+    </script>
 </body>
 </html>
